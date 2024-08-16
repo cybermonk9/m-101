@@ -1,0 +1,29 @@
+db.catalog.aggregate([
+
+ {
+
+ $match: { $text: { $search: "Apple" } }
+
+ },
+
+ {
+
+ $project: {
+
+ title: 1,
+
+ description: 1,
+
+ score: { $meta: "textScore" }
+
+ }
+
+ },
+
+ {
+
+ $sort: { score: { $meta: "textScore" } }
+
+ }
+
+])
